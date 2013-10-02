@@ -3,22 +3,28 @@ package com.gopivotal.samples.suicidalapp;
 import java.text.DateFormat;
 import java.util.Date;
 
+import javax.servlet.ServletRequest;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @EnableAutoConfiguration
+@Configuration
+@ComponentScan
 public class App
 {
 
 	DateFormat formatter = DateFormat.getDateTimeInstance();
 
 	@RequestMapping("/")
-	public AppStatus home()
+	public String home(ServletRequest request)
 	{
-		return new AppStatus("alive", new Date());
+		return String.format("<html><body><h1>Alive on %s at port %s at %s</h1></body></html>", request.getLocalAddr(), request.getLocalPort(), formatter.format(new Date()));
 	}
 
 	@RequestMapping("/die")
@@ -31,44 +37,5 @@ public class App
 		throws Exception
 	{
 		SpringApplication.run(App.class, args);
-	}
-
-	public class AppStatus
-	{
-		private String status;
-		private Date time;
-
-		public AppStatus(String status, Date time)
-		{
-			super();
-			this.status = status;
-			this.time = time;
-		}
-
-		public AppStatus()
-		{
-			super();
-			// TODO Auto-generated constructor stub
-		}
-
-		public String getStatus()
-		{
-			return status;
-		}
-
-		public void setStatus(String status)
-		{
-			this.status = status;
-		}
-
-		public Date getTime()
-		{
-			return time;
-		}
-
-		public void setTime(Date time)
-		{
-			this.time = time;
-		}
 	}
 }

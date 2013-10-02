@@ -6,6 +6,7 @@
     <groupId>com.gopivotal.samples</groupId>
     <artifactId>suicidal-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <!-- Inherit defaults from Spring Boot -->
     <parent>
@@ -21,16 +22,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
-
-    <!-- Package as an executable JAR -->
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
     <!-- Allow access to Spring milestones and snapshots -->
     <!-- (you don't need this if you are using anything after 0.5.0.M2) -->
