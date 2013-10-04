@@ -3,6 +3,6 @@ applications:
 - name: suicidal-app
   memory: 512M
   instances: 1
-  host: suicidal-app
+  host: suicidal-app-${random-word}
   domain: cfapps.io
   path: target/suicidal-app-0.0.1-SNAPSHOT.war
